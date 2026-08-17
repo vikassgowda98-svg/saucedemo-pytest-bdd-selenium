@@ -1,0 +1,6 @@
+{
+    "base_url": "https://www.saucedemo.com/",
+    "headless": false,
+    "implicit_wait": 5,
+    "explicit_wait": 10
+}

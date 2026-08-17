@@ -1,24 +1,104 @@
-from selenium.webdriver.common.by import By
-from base_page import BasePage
+from selenium.webdriver.support.ui import Select
+
+from pages.base_page import BasePage
 
 
 class ProductsPage(BasePage):
-    TITLE = (By.CSS_SELECTOR, "span.title")  # should be "Products"
-    SORT_DROPDOWN = (By.CSS_SELECTOR, "select.product_sort_container")
-    INVENTORY_ITEMS = (By.CSS_SELECTOR, ".inventory_item")
-    CART_BADGE = (By.CLASS_NAME, "shopping_cart_badge")
 
-    def get_title(self) -> str:
-        return self.text_of(self.TITLE)
+    PAGE_NAME = "products_page"
 
-    def select_sort_option(self, value: str):
-        from selenium.webdriver.support.ui import Select
-        select = Select(self.driver.find_element(*self.SORT_DROPDOWN))
-        select.select_by_value(value)
+    def get_title(self):
 
-    def add_first_item_to_cart(self):
-        first_btn = self.driver.find_elements(By.CSS_SELECTOR, "button.btn_inventory")[0]
-        first_btn.click()
+        return self.get_text(
+            self.PAGE_NAME,
+            "title"
+        )
 
-    def get_cart_count(self) -> int:
-        return int(self.text_of(self.CART_BADGE))
+    def get_product_items(self):
+
+        return self.get_elements(
+            self.PAGE_NAME,
+            "inventory_items"
+        )
+
+    def get_product_names(self):
+
+        return self.get_elements(
+            self.PAGE_NAME,
+            "product_names"
+        )
+
+    def get_product_prices(self):
+
+        return self.get_elements(
+            self.PAGE_NAME,
+            "product_prices"
+        )
+
+    def get_add_to_cart_buttons(self):
+
+        return self.get_elements(
+            self.PAGE_NAME,
+            "add_to_cart_buttons"
+        )
+
+    def add_first_product_to_cart(self):
+
+        buttons = (
+            self.get_add_to_cart_buttons()
+        )
+
+        buttons[0].click()
+
+    def add_product_by_index(
+        self,
+        index
+    ):
+
+        buttons = (
+            self.get_add_to_cart_buttons()
+        )
+
+        buttons[index].click()
+
+    def get_cart_count(self):
+
+        return self.get_text(
+            self.PAGE_NAME,
+            "cart_badge"
+        )
+
+    def open_cart(self):
+
+        self.click(
+            self.PAGE_NAME,
+            "cart_icon"
+        )
+
+    def sort_products(
+        self,
+        value
+    ):
+
+        dropdown = self.get_element(
+            self.PAGE_NAME,
+            "sort_dropdown"
+        )
+
+        Select(
+            dropdown
+        ).select_by_value(value)
+
+    def open_menu(self):
+
+        self.click(
+            self.PAGE_NAME,
+            "menu_button"
+        )
+
+    def logout(self):
+
+        self.click(
+            self.PAGE_NAME,
+            "logout_link"
+        )

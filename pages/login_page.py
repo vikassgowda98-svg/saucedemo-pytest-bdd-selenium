@@ -1,22 +1,29 @@
-from selenium.webdriver.common.by import By
-from base_page import BasePage
+from pages.base_page import BasePage
 
 
 class LoginPage(BasePage):
-    URL = "https://www.saucedemo.com/"
 
-    USERNAME = (By.ID, "user-name")
-    PASSWORD = (By.ID, "password")
-    LOGIN_BUTTON = (By.ID, "login-button")
-    ERROR_MESSAGE = (By.CSS_SELECTOR, "h3[data-test='error']")
+    PAGE_NAME = "login_page"
 
     def open_login_page(self):
         self.open(self.URL)
 
-    def login(self, username: str, password: str):
-        self.type(self.USERNAME, username)
-        self.type(self.PASSWORD, password)
-        self.click(self.LOGIN_BUTTON)
+    def enter_username(self,username):
+        self.type_text(self.PAGE_NAME,"username",username)
 
-    def get_error_message(self) -> str:
-        return self.text_of(self.ERROR_MESSAGE)
+    def enter_password(self,password):
+        self.type_text(self.PAGE_NAME,"password",password)
+
+    def click_login(self):
+        self.click(self.PAGE_NAME,"login_button")
+
+    def login(self,username,password):
+        self.enter_username(username)
+        self.enter_password(password)
+        self.click_login()
+
+    def get_error_message(self):
+        return self.get_text(self.PAGE_NAME,"error_message")
+
+    def is_login_button_displayed(self):
+        return self.is_displayed(self.PAGE_NAME,"login_button")
