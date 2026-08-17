@@ -1,0 +1,121 @@
+{
+    "login_page": {
+        "username": {
+            "by": "id",
+            "value": "user-name"
+        },
+        "password": {
+            "by": "id",
+            "value": "password"
+        },
+        "login_button": {
+            "by": "id",
+            "value": "login-button"
+        },
+        "error_message": {
+            "by": "css selector",
+            "value": "h3[data-test='error']"
+        }
+    },
+
+    "products_page": {
+        "title": {
+            "by": "css selector",
+            "value": "span.title"
+        },
+        "inventory_items": {
+            "by": "css selector",
+            "value": ".inventory_item"
+        },
+        "product_names": {
+            "by": "css selector",
+            "value": ".inventory_item_name"
+        },
+        "product_prices": {
+            "by": "css selector",
+            "value": ".inventory_item_price"
+        },
+        "add_to_cart_buttons": {
+            "by": "css selector",
+            "value": "button.btn_inventory"
+        },
+        "sort_dropdown": {
+            "by": "css selector",
+            "value": "select.product_sort_container"
+        },
+        "cart_icon": {
+            "by": "class name",
+            "value": "shopping_cart_link"
+        },
+        "cart_badge": {
+            "by": "class name",
+            "value": "shopping_cart_badge"
+        },
+        "menu_button": {
+            "by": "id",
+            "value": "react-burger-menu-btn"
+        },
+        "logout_link": {
+            "by": "id",
+            "value": "logout_sidebar_link"
+        }
+    },
+
+    "cart_page": {
+        "title": {
+            "by": "css selector",
+            "value": "span.title"
+        },
+        "cart_items": {
+            "by": "css selector",
+            "value": ".cart_item"
+        },
+        "checkout_button": {
+            "by": "id",
+            "value": "checkout"
+        },
+        "continue_shopping": {
+            "by": "id",
+            "value": "continue-shopping"
+        },
+        "remove_buttons": {
+            "by": "css selector",
+            "value": "button.cart_button"
+        }
+    },
+
+    "checkout_page": {
+        "first_name": {
+            "by": "id",
+            "value": "first-name"
+        },
+        "last_name": {
+            "by": "id",
+            "value": "last-name"
+        },
+        "postal_code": {
+            "by": "id",
+            "value": "postal-code"
+        },
+        "continue_button": {
+            "by": "id",
+            "value": "continue"
+        },
+        "cancel_button": {
+            "by": "id",
+            "value": "cancel"
+        },
+        "finish_button": {
+            "by": "id",
+            "value": "finish"
+        },
+        "error_message": {
+            "by": "css selector",
+            "value": "h3[data-test='error']"
+        },
+        "confirmation_message": {
+            "by": "css selector",
+            "value": "h2.complete-header"
+        }
+    }
+}
