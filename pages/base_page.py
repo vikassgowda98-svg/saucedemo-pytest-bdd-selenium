@@ -27,8 +27,8 @@ class BasePage:
         element = self.get_element(page_name,element_name)
         element.click()
 
-    def type_text(self,age_name,element_name,text):
-        element = self.get_element(page_name,element_name)
+    def type_text(self, page_name, element_name, text):
+        element = self.get_element(page_name, element_name)
         element.clear()
         element.send_keys(text)
 
