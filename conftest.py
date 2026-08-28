@@ -46,18 +46,34 @@ def driver(request, config):
 
     driver.quit()
 
-
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
+
     outcome = yield
     report = outcome.get_result()
 
     if report.when == "call" and report.failed:
+
+        print(">>> TEST FAILED - SCREENSHOT HOOK CALLED")
+
         driver = item.funcargs.get("driver")
 
         if driver:
-            allure.attach(
-                driver.get_screenshot_as_png(),
-                name="Failure Screenshot",
-                attachment_type=allure.attachment_type.PNG
-            )
+            print(">>> DRIVER FOUND")
+
+            try:
+                screenshot = driver.get_screenshot_as_png()
+
+                print(">>> SCREENSHOT CAPTURED")
+
+                allure.attach(
+                    screenshot,
+                    name="Failure Screenshot",
+                    attachment_type=allure.attachment_type.PNG
+                )
+
+                print(">>> SCREENSHOT ATTACHED")
+
+            except Exception as e:
+                print(f">>> SCREENSHOT ERROR: {e}")
+
