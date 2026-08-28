@@ -22,4 +22,4 @@ Feature: Login to SauceDemo
     Examples:
       | username      | password    | error                                                     |
       | locked_out_user | secret_sauce | Epic sadface: Sorry, this user has been locked out.    |
-      | standard_user | wrong_pass  | Epic sadface: Username and password do not match any user in this service |
+      | standard_user | wrong_pass  | Epic sadface: Username and password do not match any user |
