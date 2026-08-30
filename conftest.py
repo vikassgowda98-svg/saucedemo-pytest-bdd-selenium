@@ -37,43 +37,49 @@ def credentials():
 @pytest.fixture
 def driver(request, config):
     browser = request.config.getoption("--browser")
-
     driver = DriverClass.create_driver(browser,config["headless"])
-
     driver.implicitly_wait(config["implicit_wait"])
-
     yield driver
-
     driver.quit()
 
-@pytest.hookimpl(hookwrapper=True)
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_makereport(item, call):
-
     outcome = yield
     report = outcome.get_result()
 
     if report.when == "call" and report.failed:
-
         print(">>> TEST FAILED - SCREENSHOT HOOK CALLED")
 
-        driver = item.funcargs.get("driver")
+        driver = None
+
+        try:
+            driver = item.funcargs.get("driver")
+        except Exception:
+            driver = None
+
+        if driver is None:
+            try:
+                driver = item._request.getfixturevalue("driver")
+            except Exception:
+                driver = None
 
         if driver:
             print(">>> DRIVER FOUND")
 
             try:
                 screenshot = driver.get_screenshot_as_png()
-
                 print(">>> SCREENSHOT CAPTURED")
 
                 allure.attach(
                     screenshot,
                     name="Failure Screenshot",
-                    attachment_type=allure.attachment_type.PNG
+                    attachment_type=allure.attachment_type.PNG,
                 )
 
                 print(">>> SCREENSHOT ATTACHED")
 
             except Exception as e:
                 print(f">>> SCREENSHOT ERROR: {e}")
+        else:
+            print(">>> DRIVER NOT FOUND FOR FAILURE HOOK")
 
