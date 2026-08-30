@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat 'python --version'
+                bat 'python -m pip install --upgrade pip'
+                bat 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat 'pytest -v --alluredir=allure-results'
+            }
+        }
+
+        stage('Allure Report') {
+            steps {
+                allure results: [[path: 'allure-results']]
+            }
+        }
+    }
+}
