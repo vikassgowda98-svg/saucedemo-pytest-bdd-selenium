@@ -199,12 +199,6 @@ def open_navigation_menu(driver):
         products_page.open_menu()
 
 
-@then("logout option should be displayed")
-def verify_logout_option_displayed(driver):
-    with allure.step("Then logout option should be displayed"):
-        assert driver.find_element("id", "logout_sidebar_link").is_displayed() is True
-
-
 @when("user navigates to the products page")
 def navigate_to_products_page(driver, config):
     with allure.step("When user navigates to the products page"):

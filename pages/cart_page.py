@@ -11,6 +11,9 @@ class CartPage(BasePage):
     def get_cart_items(self):
         return self.get_elements(self.PAGE_NAME,"cart_items")
 
+    def find_cart_item_names(self):
+        return self.find_elements(self.PAGE_NAME,"cart_items")
+
     def click_checkout(self):
         self.click(self.PAGE_NAME,"checkout_button")
 

@@ -45,3 +45,6 @@ class ProductsPage(BasePage):
 
     def logout(self):
         self.click(self.PAGE_NAME,"logout_link")
+
+    def is_logout_button_displayed(self):
+        return self.is_displayed(self.PAGE_NAME,"logout_link")

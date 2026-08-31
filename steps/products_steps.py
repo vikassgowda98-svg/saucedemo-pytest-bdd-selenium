@@ -172,3 +172,9 @@ def verify_cart_count_not_displayed(driver):
     with allure.step("Then cart count should not be displayed"):
         badges = driver.find_elements("class name", "shopping_cart_badge")
         assert len(badges) == 0
+
+@then("logout option should be displayed")
+def verify_logout_option_displayed(driver):
+    with allure.step("Then logout option should be displayed"):
+        products_page = ProductsPage(driver)
+        assert products_page.is_logout_button_displayed() is True

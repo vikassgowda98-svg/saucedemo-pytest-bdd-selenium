@@ -22,6 +22,10 @@ class BasePage:
     def get_elements(self,page_name,element_name):
         locator = (self.selector_manager.get_selector(page_name,element_name))
         return self.wait.until(EC.presence_of_all_elements_located(locator))
+    
+    def find_elements(self,page_name,element_name):
+        locator = (self.selector_manager.get_selector(page_name,element_name))
+        return self.driver.find_elements(*locator)
 
     def click(self,page_name,element_name):
         element = self.get_element(page_name,element_name)
