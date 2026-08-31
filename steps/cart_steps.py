@@ -36,7 +36,8 @@ def verify_all_selected_products_in_cart(driver):
 def verify_cart_is_empty(driver):
     with allure.step("Then cart should be empty"):
         cart_page = CartPage(driver)
-        assert len(cart_page.get_cart_items()) == 0
+        print(f"Cart items: {len(cart_page.find_cart_item_names())}")
+        assert len(cart_page.find_cart_item_names()) == 0
 
 
 @then("product name should be displayed")
