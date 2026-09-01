@@ -3,6 +3,7 @@ from pytest_bdd import given, when, then, parsers
 
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
+from pages.cart_page import CartPage
 
 
 @given("I am on the SauceDemo login page")
@@ -127,6 +128,12 @@ def verify_products_page(driver):
         products_page = ProductsPage(driver)
         assert products_page.get_title() == "Products"
 
+
+@then("Your Cart page should be displayed")
+def verify_your_cart_page(driver):
+    with allure.step("Then I should see the Your Cart page"):
+        cart_page = CartPage(driver)
+        assert cart_page.get_title() == "Your Cart"
 
 @then("login page should be displayed")
 def verify_login_page(driver):
