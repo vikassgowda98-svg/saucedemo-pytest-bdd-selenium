@@ -12,6 +12,8 @@ Feature: Checkout Regression Tests
     Then checkout information page should be displayed
 
   Scenario: Checkout with valid information
+    When user opens the shopping cart
+    When user clicks checkout
     When user enters valid first name
     And user enters valid last name
     And user enters valid postal code
@@ -19,6 +21,8 @@ Feature: Checkout Regression Tests
     Then checkout overview page should be displayed
 
   Scenario: Checkout with empty first name
+  When user opens the shopping cart
+    When user clicks checkout
     When user enters empty first name
     And user enters valid last name
     And user enters valid postal code
@@ -26,6 +30,8 @@ Feature: Checkout Regression Tests
     Then checkout error message should be displayed
 
   Scenario: Checkout with empty last name
+    When user opens the shopping cart
+    When user clicks checkout
     When user enters valid first name
     And user enters empty last name
     And user enters valid postal code
@@ -33,6 +39,8 @@ Feature: Checkout Regression Tests
     Then checkout error message should be displayed
 
   Scenario: Checkout with empty postal code
+    When user opens the shopping cart
+    When user clicks checkout
     When user enters valid first name
     And user enters valid last name
     And user enters empty postal code
@@ -40,32 +48,43 @@ Feature: Checkout Regression Tests
     Then checkout error message should be displayed
 
   Scenario: Checkout with all fields empty
+    When user opens the shopping cart
+    When user clicks checkout
     When user clicks continue
     Then checkout error message should be displayed
 
   Scenario: Cancel checkout
     When user opens the shopping cart
+    When user opens the shopping cart
     And user clicks checkout
     And user clicks cancel
-    Then products page should be displayed
+    Then Your Cart page should be displayed
 
   Scenario: Verify checkout overview
+    When user opens the shopping cart
+    When user clicks checkout
     When user enters valid checkout information
     And user clicks continue
     Then checkout overview page should be displayed
 
   Scenario: Verify total price
+    When user opens the shopping cart
+    When user clicks checkout
     When user enters valid checkout information
     And user clicks continue
     Then total price should be displayed
 
   Scenario: Complete order successfully
+    When user opens the shopping cart
+    When user clicks checkout
     When user enters valid checkout information
     And user clicks continue
     And user clicks finish
     Then order confirmation should be displayed
 
   Scenario: Verify order confirmation message
+    When user opens the shopping cart
+    When user clicks checkout
     When user enters valid checkout information
     And user clicks continue
     And user clicks finish
